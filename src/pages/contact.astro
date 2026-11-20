@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import { SITE } from '@/site.config';
+
+const subject = encodeURIComponent('Hello from phrenstudio.com');
+---
+
+<BaseLayout title="Contact" description="Begin the conversation with Phren Thought Studio.">
+  <section class="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-24">
+    <p class="text-ink-soft mb-6 font-mono text-xs tracking-[0.2em] uppercase">Contact</p>
+
+    <h1 class="font-display text-ink max-w-xl text-4xl leading-[1.1] font-medium sm:text-5xl">
+      Begin the conversation
+    </h1>
+
+    <p class="text-ink-soft mt-6 max-w-md text-lg">
+      Ready to build trust through thought leadership? Send me a short message.
+    </p>
+
+    <div class="mt-10 flex flex-col items-start gap-4">
+      <Button href={`mailto:${SITE.email}?subject=${subject}`}>Write to me →</Button>
+      <a href={`mailto:${SITE.email}`} class="text-signal font-mono text-sm hover:underline">
+        {SITE.email}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

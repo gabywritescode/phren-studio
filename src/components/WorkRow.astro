@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { url } from '@/utils/url';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  index: number;
+}
+
+const { entry, index } = Astro.props;
+const { title, summary, type } = entry.data;
+---
+
+<a
+  href={url(`/portfolio/${entry.id}`)}
+  class="group border-line hover:border-signal grid grid-cols-[2.5rem_1fr_auto] items-start gap-4 border-b py-5 transition-colors sm:grid-cols-[3rem_1fr_auto] sm:gap-6"
+>
+  <span class="text-ink-soft pt-1.5 font-mono text-xs">{String(index).padStart(2, '0')}</span>
+
+  <span class="min-w-0">
+    <span class="font-display text-ink group-hover:text-signal block text-lg leading-snug transition-colors">
+      {title}
+    </span>
+    <span class="text-ink-soft mt-1 block text-sm">{summary}</span>
+  </span>
+
+  <span class="flex items-center gap-4 pt-1.5">
+    <span class="text-ink-soft hidden font-mono text-[11px] md:block">{type}</span>
+    <span
+      aria-hidden="true"
+      class="text-ink-soft group-hover:text-signal transition-all group-hover:translate-x-1"
+    >
+      →
+    </span>
+  </span>
+</a>

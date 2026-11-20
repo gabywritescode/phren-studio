@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import WorkRow from '@/components/WorkRow.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { SITE } from '@/site.config';
+import { SERVICES } from '@/data/services';
+import { url } from '@/utils/url';
+
+const allWork = (await getCollection('work', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const selected = allWork.filter((entry) => entry.data.featured).slice(0, 4);
+---
+
+<BaseLayout title={`${SITE.name} · ${SITE.tagline}`}>
+  <section class="mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
+    <p class="text-ink-soft mb-6 inline-flex items-center gap-2 font-mono text-xs">
+      <span class="bg-signal h-1.5 w-1.5 rounded-full" aria-hidden="true"></span>
+      {SITE.founder} · {SITE.status}
+    </p>
+
+    <h1 class="font-display text-ink max-w-2xl text-4xl leading-[1.1] font-medium sm:text-5xl">
+      Expert content that reads <em class="text-signal">like a gut feeling.</em>
+    </h1>
+
+    <p class="text-ink-soft mt-6 max-w-lg text-lg">{SITE.intro}</p>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <Button href="/contact" variant="solid">Let's talk →</Button>
+      <Button href="/portfolio" variant="ghost">See the work</Button>
+    </div>
+  </section>
+
+  <section id="principle" class="mx-auto max-w-3xl px-6 pb-20">
+    <SectionHeading eyebrow="My guiding principle" />
+    <div class="max-w-2xl space-y-5">
+      <p class="font-display text-ink text-xl leading-relaxed sm:text-2xl">
+        “Phren” comes from the Greek for “mind”. Yet, in ancient Greek tradition, the mind did not
+        live in the head but in the diaphragm, a reminder that understanding requires both reason
+        and emotion.
+      </p>
+      <p class="text-ink-soft">
+        At Phren Thought Studio, I help you find the wisdom intrinsic to your business and translate
+        it into thought leadership that connects emotionally and rationally with your buyers and
+        partners. Through white papers, long-form research, executive voice, and brand narrative, we
+        can set the stage for the right gut feeling.
+      </p>
+    </div>
+  </section>
+
+  <section id="services" class="mx-auto max-w-3xl px-6 pb-20">
+    <SectionHeading eyebrow="What I offer" count={SERVICES.length} />
+    <ul>
+      {
+        SERVICES.map((s) => (
+          <li class="border-line border-b">
+            <a
+              href={url(`/services#${s.id}`)}
+              class="group grid gap-1 py-4 sm:grid-cols-[1fr_1fr] sm:gap-6"
+            >
+              <span class="font-display text-ink group-hover:text-signal text-lg leading-snug transition-colors">
+                {s.title}
+              </span>
+              <span class="text-ink-soft text-sm sm:pt-1">{s.short}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a
+      href={url('/services')}
+      class="text-signal mt-6 inline-block font-mono text-xs hover:underline"
+    >
+      See all services →
+    </a>
+  </section>
+
+  <section id="work" class="mx-auto max-w-3xl px-6 pb-20">
+    <SectionHeading eyebrow="Selected work" count={allWork.length} />
+    <div>
+      {selected.map((entry, i) => <WorkRow entry={entry} index={i + 1} />)}
+    </div>
+    <a
+      href={url('/portfolio')}
+      class="text-signal mt-6 inline-block font-mono text-xs hover:underline"
+    >
+      See portfolio →
+    </a>
+  </section>
+
+  <section id="contact" class="mx-auto max-w-3xl px-6 pb-24">
+    <SectionHeading eyebrow="Begin the conversation" />
+    <p class="font-display text-ink max-w-lg text-2xl sm:text-3xl">
+      Ready to build trust through thought leadership?
+    </p>
+    <a
+      href={`mailto:${SITE.email}`}
+      class="text-signal mt-4 inline-flex items-center gap-2 font-mono hover:underline"
+    >
+      {SITE.email}
+    </a>
+  </section>
+</BaseLayout>

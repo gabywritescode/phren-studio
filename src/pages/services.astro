@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import { SERVICES } from '@/data/services';
+---
+
+<BaseLayout
+  title="Services"
+  description="White papers, executive thought leadership, brand narrative, content strategy, retainers, workshops, and conference content."
+>
+  <section class="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-24">
+    <p class="text-ink-soft mb-6 font-mono text-xs tracking-[0.2em] uppercase">Services</p>
+    <h1 class="font-display text-ink max-w-xl text-3xl font-medium sm:text-4xl">
+      Seven ways to put your expertise on the page.
+    </h1>
+
+    <div class="mt-12">
+      {
+        SERVICES.map((s, i) => (
+          <article id={s.id} class="border-line scroll-mt-24 border-t py-10">
+            <div class="grid gap-4 sm:grid-cols-[3rem_1fr] sm:gap-6">
+              <span class="text-ink-soft font-mono text-xs sm:pt-2">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h2 class="font-display text-ink text-2xl leading-snug font-medium">{s.title}</h2>
+                <p class="text-ink mt-4 max-w-xl">{s.what}</p>
+                <p class="text-ink-soft mt-3 max-w-xl">{s.how}</p>
+                <ul class="mt-5 flex flex-wrap gap-2" aria-label="Uses">
+                  {s.uses.map((u) => (
+                    <li class="border-line text-ink-soft rounded-full border px-3 py-1 font-mono text-[11px]">
+                      {u}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="border-line border-t pt-10">
+      <p class="font-display text-ink text-2xl">Not sure which one you need?</p>
+      <p class="text-ink-soft mt-2">Every engagement starts with a short conversation.</p>
+      <Button href="/contact" class="mt-6">Let's talk →</Button>
+    </div>
+  </section>
+</BaseLayout>
