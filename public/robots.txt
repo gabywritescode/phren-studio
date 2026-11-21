@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gabywritescode.github.io/phren-studio/sitemap-index.xml
+Sitemap: https://www.phrenstudio.com/sitemap-index.xml

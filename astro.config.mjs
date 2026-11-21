@@ -3,12 +3,9 @@ import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-// While the site is previewed on GitHub Pages it lives at
-// https://gabywritescode.github.io/phren-studio/ , so BASE is '/phren-studio'.
-// When phrenstudio.com points here, change SITE_URL to 'https://www.phrenstudio.com'
-// and BASE to '/'.
-const SITE_URL = 'https://gabywritescode.github.io';
-const BASE = '/phren-studio';
+// The site is served from https://www.phrenstudio.com (custom domain on GitHub Pages).
+const SITE_URL = 'https://www.phrenstudio.com';
+const BASE = '/';
 
 export default defineConfig({
   site: SITE_URL,

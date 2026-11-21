@@ -24,9 +24,9 @@ Each piece is a Markdown file in `src/content/work/`. At the top:
 - `featured: true` shows it on the homepage (up to four)
 - `draft: true` hides it from the site without deleting it
 
-## Moving to phrenstudio.com
+## Domain
 
-In `astro.config.mjs`, set `SITE_URL` to `https://www.phrenstudio.com` and `BASE` to `'/'`, add a `public/CNAME` file containing `www.phrenstudio.com`, and update `public/robots.txt`.
+The site is served at https://www.phrenstudio.com. DNS is managed at Namecheap; the custom domain is set under the repository's Settings → Pages.
 
 ## Running locally (optional)
 
