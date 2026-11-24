@@ -82,7 +82,7 @@ const SERVICES_ES = [
     title: 'Narrativa de marca y marco de mensajes',
     short: 'Cómo habla tu organización, de forma coherente.',
     what: 'Un marco de narrativa de marca define cómo habla una organización: sus pilares, su propuesta de valor y su tono de voz.',
-    how: 'Phren Thought Studio convierte lo que tu equipo sabe sobre quiénes sois y a quién servís en una guía de mensajes que toda la organización puede usar de forma coherente.',
+    how: 'Phren Thought Studio convierte lo que tu equipo sabe sobre quiénes son y a quién sirven en una guía de mensajes que toda la organización puede usar de forma coherente.',
     uses: ['lanzamientos y cambios de marca', 'incorporación de equipos', 'coherencia entre mercados', 'apoyo a ventas'],
   },
   {
