@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions';
 import { Font } from 'astro:assets';
 import { SITE } from '@/site.config';
 import { url } from '@/utils/url';
+import { UI, getLang, href, pathWithoutLang } from '@/i18n';
 
 interface Props {
   title: string;
@@ -13,7 +14,11 @@ interface Props {
 const { title: pageTitle, description: pageDescription, image } = Astro.props;
 
 const fullTitle = pageTitle.includes(SITE.name) ? pageTitle : `${pageTitle} · ${SITE.name}`;
-const description = pageDescription || SITE.description;
+const lang = getLang(Astro.url);
+const description = pageDescription || UI[lang].description;
+const basePath = pathWithoutLang(Astro.url);
+const enURL = new URL(href(basePath, 'en'), Astro.site);
+const esURL = new URL(href(basePath, 'es'), Astro.site);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(url(image || '/og-image.png'), Astro.site);
 ---
@@ -26,6 +31,9 @@ const socialImage = new URL(url(image || '/og-image.png'), Astro.site);
 
 {/* Canonical URL */}
 <link rel="canonical" href={canonicalURL} />
+<link rel="alternate" hreflang="en" href={enURL} />
+<link rel="alternate" hreflang="es" href={esURL} />
+<link rel="alternate" hreflang="x-default" href={enURL} />
 
 {/* Primary Meta Tags */}
 <title>{fullTitle}</title>
@@ -35,6 +43,7 @@ const socialImage = new URL(url(image || '/og-image.png'), Astro.site);
 
 {/* Open Graph / Facebook */}
 <meta property="og:type" content="website" />
+<meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_GB'} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:description" content={description} />

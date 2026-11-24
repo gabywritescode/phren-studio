@@ -1,0 +1,63 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import { UI, href, type Lang } from '@/i18n';
+import { slugOf } from '@/utils/work';
+
+interface Props {
+  lang: Lang;
+  entry: CollectionEntry<'work'>;
+  prev?: CollectionEntry<'work'>;
+  next?: CollectionEntry<'work'>;
+}
+
+const { lang, entry, prev, next } = Astro.props;
+const t = UI[lang];
+const { title, summary, type, client } = entry.data;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={title} description={summary}>
+  <article class="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-24">
+    <a href={href('/portfolio', lang)} class="text-ink-soft hover:text-signal font-mono text-xs transition-colors">{t.allWork}</a>
+
+    <p class="text-signal mt-8 font-mono text-xs tracking-[0.2em] uppercase">{type}</p>
+    <h1 class="font-display text-ink mt-3 max-w-2xl text-3xl leading-tight font-medium sm:text-4xl">{title}</h1>
+    <p class="text-ink-soft mt-4 max-w-xl text-lg">{summary}</p>
+
+    <dl class="border-line text-ink-soft mt-6 flex flex-wrap gap-x-8 gap-y-2 border-y py-4 font-mono text-xs">
+      <div><dt class="inline">{t.client} — </dt><dd class="inline">{client}</dd></div>
+      <div><dt class="inline">{t.format} — </dt><dd class="inline">{type}</dd></div>
+    </dl>
+
+    <div class="prose prose-sm sm:prose-base mt-10 max-w-2xl">
+      <Content />
+    </div>
+
+    <nav class="border-line mt-16 grid gap-4 border-t pt-8 sm:grid-cols-2" aria-label="More work">
+      {
+        prev ? (
+          <a href={href(`/portfolio/${slugOf(prev)}`, lang)} class="group">
+            <span class="text-ink-soft font-mono text-xs">{t.previous}</span>
+            <span class="font-display text-ink group-hover:text-signal mt-1 block text-lg transition-colors">{prev.data.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        next && (
+          <a href={href(`/portfolio/${slugOf(next)}`, lang)} class="group sm:text-right">
+            <span class="text-ink-soft font-mono text-xs">{t.next}</span>
+            <span class="font-display text-ink group-hover:text-signal mt-1 block text-lg transition-colors">{next.data.title}</span>
+          </a>
+        )
+      }
+    </nav>
+
+    <div class="mt-12">
+      <Button href={href('/contact', lang)}>{t.letsTalk}</Button>
+    </div>
+  </article>
+</BaseLayout>

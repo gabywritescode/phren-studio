@@ -1,7 +1,6 @@
 ---
-import { url } from '@/utils/url';
-
 interface Props {
+  // Pass a finished href (use href() from '@/i18n' for internal links).
   href?: string;
   variant?: 'solid' | 'ghost';
   class?: string;
@@ -20,6 +19,6 @@ const classes = [base, variants[variant], className].filter(Boolean).join(' ');
 const Tag = href ? 'a' : 'button';
 ---
 
-<Tag class={classes} href={href ? url(href) : undefined}>
+<Tag class={classes} href={href}>
   <slot />
 </Tag>

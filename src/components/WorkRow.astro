@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { url } from '@/utils/url';
+import { getLang, href } from '@/i18n';
+import { slugOf } from '@/utils/work';
 
 interface Props {
   entry: CollectionEntry<'work'>;
@@ -9,10 +10,11 @@ interface Props {
 
 const { entry, index } = Astro.props;
 const { title, summary, type } = entry.data;
+const lang = getLang(Astro.url);
 ---
 
 <a
-  href={url(`/portfolio/${entry.id}`)}
+  href={href(`/portfolio/${slugOf(entry)}`, lang)}
   class="group border-line hover:border-signal grid grid-cols-[2.5rem_1fr_auto] items-start gap-4 border-b py-5 transition-colors sm:grid-cols-[3rem_1fr_auto] sm:gap-6"
 >
   <span class="text-ink-soft pt-1.5 font-mono text-xs">{String(index).padStart(2, '0')}</span>

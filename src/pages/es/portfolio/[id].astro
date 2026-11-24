@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import View from '@/views/PortfolioEntry.astro';
+import { getWork, slugOf } from '@/utils/work';
+
+export async function getStaticPaths() {
+  const entries = await getWork('es');
+  return entries.map((entry, i) => ({
+    params: { id: slugOf(entry) },
+    props: { entry, prev: entries[i - 1], next: entries[i + 1] },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  prev?: CollectionEntry<'work'>;
+  next?: CollectionEntry<'work'>;
+}
+
+const { entry, prev, next } = Astro.props;
+---
+
+<View lang="es" entry={entry} prev={prev} next={next} />

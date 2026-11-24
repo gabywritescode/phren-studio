@@ -1,0 +1,36 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import { ABOUT } from '@/data/about';
+import { UI, href, type Lang } from '@/i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = UI[lang];
+const a = ABOUT[lang];
+---
+
+<BaseLayout title={t.aboutTitle} description={t.aboutDescription}>
+  <section class="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-24">
+    <p class="text-ink-soft mb-6 font-mono text-xs tracking-[0.2em] uppercase">{t.aboutEyebrow}</p>
+    <h1 class="font-display text-ink max-w-xl text-3xl font-medium sm:text-4xl">{a.headline}</h1>
+
+    <div class="prose prose-sm sm:prose-base mt-8 max-w-xl">
+      {a.story.map((p) => <p>{p}</p>)}
+      <p>{a.credentialsIntro}</p>
+    </div>
+
+    <ul class="mt-8 max-w-2xl">
+      {
+        a.credentials.map((c) => (
+          <li class="border-line text-ink-soft grid grid-cols-[1.25rem_1fr] gap-2 border-b py-3 text-sm sm:text-base">
+            <span class="text-signal" aria-hidden="true">—</span>
+            <span>{c}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <Button href={href('/contact', lang)} class="mt-10">{t.aboutButton}</Button>
+  </section>
+</BaseLayout>

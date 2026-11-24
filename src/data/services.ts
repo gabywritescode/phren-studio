@@ -1,5 +1,7 @@
-// The seven services. `short` is used on the homepage, the rest on /services.
-export const SERVICES = [
+// The seven services, in English and Spanish. `short` is used on the homepage, the rest on /services.
+import type { Lang } from '@/i18n';
+
+const SERVICES_EN = [
   {
     id: 'white-papers',
     title: 'White Papers & Long-Form Research Reports',
@@ -56,4 +58,65 @@ export const SERVICES = [
     how: "Phren Thought Studio turns your speaker's expertise into a submission-ready abstract and a structured, presentation-ready narrative.",
     uses: ['executive visibility', 'brand positioning through thought leadership', 'business development'],
   },
-] as const;
+];
+
+const SERVICES_ES = [
+  {
+    id: 'white-papers',
+    title: 'White papers e informes de investigación',
+    short: 'Posiciona a tu organización como una voz creíble en tu sector.',
+    what: 'Un white paper es una publicación de investigación con un enfoque estratégico que posiciona a tu organización como una voz creíble en tu sector.',
+    how: 'Phren Thought Studio convierte tus datos, tu investigación o tu conocimiento experto en un informe estructurado y bien escrito, listo para diseño y distribución.',
+    uses: ['credibilidad de marca', 'generación de leads', 'apoyo a ventas', 'relaciones con medios'],
+  },
+  {
+    id: 'executive-thought-leadership',
+    title: 'Liderazgo de opinión ejecutivo y artículos firmados',
+    short: 'Contenido de alto nivel, con la firma de tus líderes.',
+    what: 'El liderazgo de opinión ejecutivo es contenido de alto nivel publicado con la firma de un líder para reforzar, a la vez, su credibilidad y la de la organización.',
+    how: 'Phren Thought Studio convierte la experiencia y el punto de vista de tu directivo en un artículo firmado listo para publicar (de 800 a 1.500 palabras), adaptado al medio que buscas.',
+    uses: ['marca personal directiva', 'apoyo a ventas', 'credibilidad en congresos', 'presencia en LinkedIn'],
+  },
+  {
+    id: 'brand-narrative',
+    title: 'Narrativa de marca y marco de mensajes',
+    short: 'Cómo habla tu organización, de forma coherente.',
+    what: 'Un marco de narrativa de marca define cómo habla una organización: sus pilares, su propuesta de valor y su tono de voz.',
+    how: 'Phren Thought Studio convierte lo que tu equipo sabe sobre quiénes sois y a quién servís en una guía de mensajes que toda la organización puede usar de forma coherente.',
+    uses: ['lanzamientos y cambios de marca', 'incorporación de equipos', 'coherencia entre mercados', 'apoyo a ventas'],
+  },
+  {
+    id: 'content-strategy',
+    title: 'Estrategia de contenidos y planificación editorial',
+    short: 'Una hoja de ruta de qué publicas, por qué y cuándo.',
+    what: 'La estrategia de contenidos es una hoja de ruta de lo que publica una organización, por qué y cuándo.',
+    how: 'Phren Thought Studio convierte tus contenidos actuales y los datos de tu audiencia en una dirección editorial clara, un calendario editorial y plantillas de briefing con las que tu equipo puede trabajar.',
+    uses: ['dirección estratégica para equipos de contenido', 'nuevas operaciones de contenido', 'liderazgo en flujos de trabajo con IA'],
+  },
+  {
+    id: 'retainer',
+    title: 'Colaboración mensual de contenidos',
+    short: 'Redacción y estrategia de alto nivel, sin necesidad de una contratación a tiempo completo.',
+    what: 'Una colaboración mensual ofrece redacción y estrategia constantes y de alto nivel, sin necesidad de una contratación a tiempo completo.',
+    how: 'Phren Thought Studio convierte las prioridades de tu equipo en 2 o 3 piezas de liderazgo de opinión al mes, más asesoramiento estratégico.',
+    uses: ['voz de marca coherente', 'generación de demanda', 'marca personal directiva', 'criterio sénior sin contratar'],
+  },
+  {
+    id: 'workshops',
+    title: 'Talleres corporativos: storytelling y alfabetización mediática',
+    short: 'Formación en narrativa de marca para tu equipo interno.',
+    what: 'Un taller de storytelling enseña a los equipos de comunicación y marketing a construir relatos que conmueven al público, no solo lo informan.',
+    how: 'Phren Thought Studio convierte los retos y materiales reales de tu equipo en una sesión de medio día o de día completo diseñada a su medida, con conclusiones por escrito para los participantes.',
+    uses: ['desarrollo de equipos', 'jornadas fuera de la oficina', 'incorporación de nuevos miembros', 'lanzamientos de marca'],
+  },
+  {
+    id: 'conference-content',
+    title: 'Contenido para congresos y eventos',
+    short: 'Propuestas de ponencia, preparación de mesas redondas y redacción de presentaciones.',
+    what: 'El apoyo en contenido para congresos abarca propuestas de ponencia, preparación de mesas redondas y redacción de presentaciones para eventos del sector.',
+    how: 'Phren Thought Studio convierte la experiencia de tu ponente en un resumen listo para enviar y en un relato estructurado, listo para presentar.',
+    uses: ['visibilidad directiva', 'posicionamiento de marca a través del liderazgo de opinión', 'desarrollo de negocio'],
+  },
+];
+
+export const SERVICES: Record<Lang, typeof SERVICES_EN> = { en: SERVICES_EN, es: SERVICES_ES };

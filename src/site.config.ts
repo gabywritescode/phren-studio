@@ -14,10 +14,3 @@ export const SITE = {
   social: [] as { label: string; href: string }[],
   locale: 'en',
 } as const;
-
-export const NAV_LINKS = [
-  { label: 'Services', href: '/services' },
-  { label: 'About', href: '/about' },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Contact', href: '/contact' },
-] as const;

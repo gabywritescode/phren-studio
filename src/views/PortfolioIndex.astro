@@ -1,0 +1,21 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import WorkRow from '@/components/WorkRow.astro';
+import { UI, type Lang } from '@/i18n';
+import { getWork } from '@/utils/work';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = UI[lang];
+const allWork = await getWork(lang);
+---
+
+<BaseLayout title={t.portfolioTitle} description={t.portfolioDescription}>
+  <section class="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-24">
+    <p class="text-ink-soft mb-6 font-mono text-xs tracking-[0.2em] uppercase">{t.portfolioTitle}</p>
+    <h1 class="font-display text-ink max-w-xl text-3xl font-medium sm:text-4xl">{t.portfolioHeadline}</h1>
+    <div class="border-line mt-10 border-t">
+      {allWork.map((entry, i) => <WorkRow entry={entry} index={i + 1} />)}
+    </div>
+  </section>
+</BaseLayout>

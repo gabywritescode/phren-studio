@@ -1,28 +1,37 @@
 ---
 import ThemeToggle from '@/components/ThemeToggle.astro';
-import { SITE, NAV_LINKS } from '@/site.config';
-import { url, stripBase } from '@/utils/url';
+import { SITE } from '@/site.config';
+import { UI, getLang, href, otherLangHref, pathWithoutLang } from '@/i18n';
 
-const currentPath = stripBase(Astro.url.pathname).replace(/\/$/, '') || '/';
+const lang = getLang(Astro.url);
+const t = UI[lang];
+const currentPath = pathWithoutLang(Astro.url).replace(/\/$/, '') || '/';
+
+const links = [
+  { label: t.nav.services, path: '/services' },
+  { label: t.nav.about, path: '/about' },
+  { label: t.nav.portfolio, path: '/portfolio' },
+  { label: t.nav.contact, path: '/contact' },
+];
 ---
 
 <header class="border-line bg-paper/90 sticky top-0 z-40 border-b backdrop-blur">
-  <div class="mx-auto flex max-w-3xl items-center justify-between gap-4 px-5 py-4 sm:px-6">
-    <a href={url('/')} class="font-display text-ink text-lg leading-tight font-medium">
+  <div class="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
+    <a href={href('/', lang)} class="font-display text-ink text-lg leading-tight font-medium">
       <span class="hidden sm:inline">{SITE.name}</span>
       <span class="sm:hidden">Phren</span>
     </a>
 
-    <nav class="flex items-center gap-3 sm:gap-5" aria-label="Primary">
+    <nav class="flex items-center gap-2 sm:gap-5" aria-label="Primary">
       {
-        NAV_LINKS.map((link) => {
-          const isActive = currentPath === link.href || currentPath.startsWith(`${link.href}/`);
+        links.map((link) => {
+          const isActive = currentPath === link.path || currentPath.startsWith(`${link.path}/`);
           return (
             <a
-              href={url(link.href)}
+              href={href(link.path, lang)}
               aria-current={isActive ? 'page' : undefined}
               class:list={[
-                'font-mono text-[11px] tracking-wide uppercase transition-colors sm:text-xs',
+                'font-mono text-[10px] whitespace-nowrap uppercase transition-colors sm:text-xs sm:tracking-wide',
                 isActive ? 'text-signal' : 'text-ink-soft hover:text-ink',
               ]}
             >
@@ -31,6 +40,15 @@ const currentPath = stripBase(Astro.url.pathname).replace(/\/$/, '') || '/';
           );
         })
       }
+      <a
+        href={otherLangHref(Astro.url)}
+        hreflang={lang === 'en' ? 'es' : 'en'}
+        lang={lang === 'en' ? 'es' : 'en'}
+        title={t.switchTitle}
+        class="border-line text-ink-soft hover:border-signal hover:text-signal rounded-full border px-1.5 py-0.5 font-mono text-[10px] transition-colors sm:text-xs"
+      >
+        {t.switchLabel}
+      </a>
       <span class="hidden sm:block"><ThemeToggle /></span>
     </nav>
   </div>

@@ -1,7 +1,7 @@
 ---
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import { SITE } from '@/site.config';
+import { UI, getLang } from '@/i18n';
 import '@/styles/global.css';
 import BaseHead from '@/components/BaseHead.astro';
 
@@ -11,11 +11,12 @@ interface Props {
   image?: string;
 }
 
-const { title, description = SITE.description, image = '/og-image.png' } = Astro.props;
+const t = UI[getLang(Astro.url)];
+const { title, description = t.description, image = '/og-image.png' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={SITE.locale}>
+<html lang={t.htmlLang}>
   <head>
     <BaseHead title={title} description={description} image={image} />
   </head>

@@ -1,0 +1,87 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import WorkRow from '@/components/WorkRow.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { SITE } from '@/site.config';
+import { SERVICES } from '@/data/services';
+import { UI, href, type Lang } from '@/i18n';
+import { getWork } from '@/utils/work';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = UI[lang];
+const services = SERVICES[lang];
+const allWork = await getWork(lang);
+const selected = allWork.filter((e) => e.data.featured).slice(0, 4);
+---
+
+<BaseLayout title={`${SITE.name} · ${t.tagline}`}>
+  <section class="mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
+    <p class="text-ink-soft mb-6 inline-flex items-center gap-2 font-mono text-xs">
+      <span class="bg-signal h-1.5 w-1.5 rounded-full" aria-hidden="true"></span>
+      {SITE.founder} · {t.status}
+    </p>
+
+    <h1 class="font-display text-ink max-w-2xl text-4xl leading-[1.1] font-medium sm:text-5xl">
+      {t.taglineLead} <em class="text-signal">{t.taglineEm}</em>
+    </h1>
+
+    <p class="text-ink-soft mt-6 max-w-lg text-lg">{t.intro}</p>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <Button href={href('/contact', lang)} variant="solid">{t.letsTalk}</Button>
+      <Button href={href('/portfolio', lang)} variant="ghost">{t.seeWork}</Button>
+    </div>
+  </section>
+
+  <section id="principle" class="mx-auto max-w-3xl px-6 pb-20">
+    <SectionHeading eyebrow={t.principleEyebrow} />
+    <div class="max-w-2xl space-y-5">
+      <p class="font-display text-ink text-xl leading-relaxed sm:text-2xl">{t.principleQuote}</p>
+      <p class="text-ink-soft">{t.principleBody}</p>
+    </div>
+  </section>
+
+  <section id="services" class="mx-auto max-w-3xl px-6 pb-20">
+    <SectionHeading eyebrow={t.offerEyebrow} count={services.length} />
+    <ul>
+      {
+        services.map((s) => (
+          <li class="border-line border-b">
+            <a
+              href={`${href('/services', lang)}#${s.id}`}
+              class="group grid gap-1 py-4 sm:grid-cols-[1fr_1fr] sm:gap-6"
+            >
+              <span class="font-display text-ink group-hover:text-signal text-lg leading-snug transition-colors">
+                {s.title}
+              </span>
+              <span class="text-ink-soft text-sm sm:pt-1">{s.short}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a href={href('/services', lang)} class="text-signal mt-6 inline-block font-mono text-xs hover:underline">
+      {t.seeAllServices}
+    </a>
+  </section>
+
+  <section id="work" class="mx-auto max-w-3xl px-6 pb-20">
+    <SectionHeading eyebrow={t.selectedWork} count={allWork.length} />
+    <div>
+      {selected.map((entry, i) => <WorkRow entry={entry} index={i + 1} />)}
+    </div>
+    <a href={href('/portfolio', lang)} class="text-signal mt-6 inline-block font-mono text-xs hover:underline">
+      {t.seePortfolio}
+    </a>
+  </section>
+
+  <section id="contact" class="mx-auto max-w-3xl px-6 pb-24">
+    <SectionHeading eyebrow={t.conversationEyebrow} />
+    <p class="font-display text-ink max-w-lg text-2xl sm:text-3xl">{t.conversationQ}</p>
+    <a href={`mailto:${SITE.email}`} class="text-signal mt-4 inline-flex items-center gap-2 font-mono hover:underline">
+      {SITE.email}
+    </a>
+  </section>
+</BaseLayout>

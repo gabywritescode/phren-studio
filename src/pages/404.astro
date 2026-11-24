@@ -3,11 +3,14 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { url } from '@/utils/url';
 ---
 
-<BaseLayout title="Page not found">
+<BaseLayout title="Page not found · Página no encontrada">
   <section class="mx-auto flex max-w-3xl flex-col items-start gap-4 px-6 py-32">
     <p class="text-ink-soft font-mono text-xs tracking-[0.2em] uppercase">404</p>
     <h1 class="font-display text-ink text-3xl font-medium">This page doesn't exist.</h1>
-    <p class="text-ink-soft">The link might be broken, or the page may have moved.</p>
-    <a href={url("/")} class="text-signal font-mono text-sm hover:underline">← Back home</a>
+    <p class="text-ink-soft">Esta página no existe o se ha movido.</p>
+    <div class="flex gap-6">
+      <a href={url('/')} class="text-signal font-mono text-sm hover:underline">← Home</a>
+      <a href={url('/es/')} class="text-signal font-mono text-sm hover:underline">← Inicio</a>
+    </div>
   </section>
 </BaseLayout>

@@ -1,6 +1,8 @@
 ---
 import { SITE } from '@/site.config';
+import { UI, getLang } from '@/i18n';
 
+const t = UI[getLang(Astro.url)];
 const year = new Date().getFullYear();
 ---
 
@@ -19,7 +21,7 @@ const year = new Date().getFullYear();
           </a>
         ))
       }
-      <a href="#top" class="hover:text-signal transition-colors">Top ↑</a>
+      <a href="#top" class="hover:text-signal transition-colors">{t.top}</a>
     </nav>
   </div>
 </footer>
