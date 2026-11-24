@@ -41,7 +41,7 @@ export const ABOUT: Record<Lang, { headline: string; story: string[]; credential
       'Una década de experiencia profesional en contenidos y liderazgo de opinión en fintech y SaaS, en empresas como Ria Money Transfer, Dandelion Payments y Sketch',
       'Autora de The Currency of Caring, un estudio de investigación propio de 72 páginas sobre el lado humano de las remesas y el proyecto de liderazgo de opinión más ambicioso de la historia de Ria',
       'Responsable de contenido y entrevistadora en cámara de Good Teacher, un documental producido en colaboración con Save the Children, ganador de dos premios Cannes Corporate Media & TV Awards y un Silver Trophy en los New York Festivals TV & Film Awards',
-      'Fundadora y redactora principal de The World We Share, una serie de historias en curso que hoy forma parte de la incorporación de nuevos empleados, las ventas y las relaciones con socios en toda la empresa',
+      'Fundadora y redactora principal de The World We Share, una serie de historias en curso que hoy forma parte de la incorporación de nuevos empleados, las ventas y las relaciones con partners en toda la empresa',
       'Desarrollo de contenido de liderazgo de opinión para eventos del sector como Sibos y Money 20/20',
       'Autora de casos de éxito firmados para Sketch, una de las principales plataformas de diseño B2B del mundo',
       'Doble grado en Escritura Creativa y Comunicación, Manhattanville University',

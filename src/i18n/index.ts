@@ -107,7 +107,7 @@ export const UI = {
     principleQuote:
       '«Phren» viene del griego y significa «mente». Sin embargo, en la tradición griega antigua, la mente no residía en la cabeza, sino en el diafragma: un recordatorio de que comprender exige tanto razón como emoción.',
     principleBody:
-      'En Phren Thought Studio te ayudo a encontrar la sabiduría propia de tu negocio y a traducirla en liderazgo de opinión que conecte, emocional y racionalmente, con tus clientes y socios. A través de white papers, investigación en profundidad, la voz de tu equipo directivo y la narrativa de marca, podemos preparar el terreno para la corazonada adecuada.',
+      'En Phren Thought Studio te ayudo a encontrar la sabiduría propia de tu negocio y a traducirla en liderazgo de opinión que conecte, emocional y racionalmente, con tus clientes y partners. A través de white papers, investigación en profundidad, la voz de tu equipo directivo y la narrativa de marca, podemos preparar el terreno para la corazonada adecuada.',
     offerEyebrow: 'Lo que ofrezco',
     seeAllServices: 'Ver todos los servicios →',
     selectedWork: 'Proyectos destacados',

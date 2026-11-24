@@ -30,7 +30,7 @@ Explorar el impacto emocional, social y económico de las remesas en las familia
 
 ## Resultados
 
-*The Currency of Caring* consiguió cerca de 1.000 descargas orgánicas, recibió elogios de socios y líderes del sector en LinkedIn (directores financieros, vicepresidentes de ventas, CEO y altos directivos) y logró estos resultados orgánicos en LinkedIn:
+*The Currency of Caring* consiguió cerca de 1.000 descargas orgánicas, recibió elogios de partners y líderes del sector en LinkedIn (directores financieros, vicepresidentes de ventas, CEO y altos directivos) y logró estos resultados orgánicos en LinkedIn:
 
 - **Más de 35.000** impresiones
 - **Más de 4.600** interacciones
